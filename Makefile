@@ -1,6 +1,6 @@
 FLAGS = -Wall -Wextra -Werror -pthread
 
-SRCS = main.c philo_utils.c
+SRCS = main.c philo_utils.c parsing.c 
 
 CC = cc
 
@@ -11,7 +11,7 @@ OBJS = $(SRCS:.c=.o)
 all	:	$(NAME)
 
 $(NAME)	:	$(OBJS)
-		$(CC) $(FLAGS) -o $(NAME)
+		$(CC) $(FLAGS) $(SRCS) -o $(NAME)
 
 clean	:
 		rm -rf
