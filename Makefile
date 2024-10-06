@@ -1,6 +1,6 @@
-FLAGS = -Wall -Wextra -Werror -pthread
+FLAGS = -Wall -Wextra -Werror -pthread -fsanitize=thread -g3
 
-SRCS = main.c philo_utils.c parsing.c 
+SRCS = main.c philo_utils.c parsing.c routine.c printing.c monitoring.c initialization.c
 
 CC = cc
 
@@ -14,10 +14,9 @@ $(NAME)	:	$(OBJS)
 		$(CC) $(FLAGS) $(SRCS) -o $(NAME)
 
 clean	:
-		rm -rf
+		rm -rf $(OBJS)
 
-
-flcean : clean
+fclean : clean
 		rm -rf $(NAME)
 
 re : fclean all
