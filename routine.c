@@ -6,7 +6,7 @@
 /*   By: yimizare <yimizare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 12:37:10 by yimizare          #+#    #+#             */
-/*   Updated: 2024/10/06 18:07:09 by yimizare         ###   ########.fr       */
+/*   Updated: 2024/10/06 18:59:30 by yimizare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		ft_eat(t_philo *philo)
 	if (one_philo(philo))
 		return (1);
 	pthread_mutex_lock(philo->right_fork);
-	ft_print_take_fork(philo, 0);
+	ft_print_take_fork(philo, 1);
 	pthread_mutex_lock(philo->data->m_last_time);
 	philo->last_time_ate = ft_get_time();
 	pthread_mutex_unlock(philo->data->m_last_time);
