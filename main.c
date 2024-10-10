@@ -6,7 +6,7 @@
 /*   By: yimizare <yimizare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 22:27:57 by yimizare          #+#    #+#             */
-/*   Updated: 2024/10/06 18:45:15 by yimizare         ###   ########.fr       */
+/*   Updated: 2024/10/10 20:02:45 by yimizare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	check_meals(t_philo *philo)
 	pthread_mutex_unlock(philo->data->m_last_time);
 	if (philo->meals == nb_of_meals)
 	{
-		pthread_mutex_unlock(philo->left_fork);
-		pthread_mutex_unlock(philo->right_fork);
+		pthread_mutex_unlock(philo->first_fork);
+		pthread_mutex_unlock(philo->second_fork);
 		pthread_mutex_lock(philo->data->m_last_time);
 		philo->data->full_philos++;
 		pthread_mutex_unlock(philo->data->m_last_time);
@@ -72,39 +72,25 @@ int	one_philo(t_philo *philo)
 			end = philo->data->stopping;
 			pthread_mutex_unlock(philo->data->mutex1);
 		}
-		pthread_mutex_unlock(philo->left_fork);
+		pthread_mutex_unlock(philo->first_fork);
 		return (1);
 	}
 	return (0);
 }
 
-
-int main(int ac, char *argv[])
+int	main(int ac, char *argv[])
 {
 	t_philo	*philo;
 	t_mutex	*mutexes;
 	t_data	data;
-	int		flag;
 	int		i;
-	
-	flag = 0;
-	philo = NULL;
+
 	i = -1;
-	if (ac == 6)
-		flag = 1;
-	if (ac < 5 || ac > 6)
-	{
-		ft_putstr_fd("not enough or too much philosophers\n" ,2);
-		return (1);
-	}
 	if (parsing(ac, argv))
 		return (1);
 	else
 	{
-		printf("correct parsing\n");
-		if (init_data(&data , argv, flag))
-			return (1);
-		if (ft_error(&data))
+		if (init_data(&data, argv, ac == 6) || ft_error(&data))
 			return (1);
 		data.philos = malloc(sizeof(pthread_t) * data.philos_num);
 		mutexes = malloc(sizeof(t_mutex) * data.philos_num);
@@ -120,4 +106,3 @@ int main(int ac, char *argv[])
 	}
 	return (0);
 }
-

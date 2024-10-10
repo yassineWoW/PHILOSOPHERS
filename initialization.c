@@ -6,7 +6,7 @@
 /*   By: yimizare <yimizare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 20:28:01 by yimizare          #+#    #+#             */
-/*   Updated: 2024/10/06 15:25:25 by yimizare         ###   ########.fr       */
+/*   Updated: 2024/10/10 13:11:29 by yimizare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	init_data(t_data *data, char **av, int flag)
 	return (0);
 }
 
-int init_mutexes(t_data *data, t_mutex *mutexes)
+int	init_mutexes(t_data *data, t_mutex *mutexes)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->philos_num)
@@ -46,10 +46,13 @@ int init_mutexes(t_data *data, t_mutex *mutexes)
 	data->mutex2 = malloc(sizeof(pthread_mutex_t));
 	data->m_last_time = malloc(sizeof(pthread_mutex_t));
 	data->meals_mutex = malloc(sizeof(pthread_mutex_t));
-	if (!data->mutex1 || !data->mutex2 || !data->m_last_time || !data->meals_mutex)
+	if (!data->mutex1 || !data->mutex2 || !data->m_last_time
+		|| !data->meals_mutex)
 		return (1);
-	if (pthread_mutex_init(data->mutex1, NULL) || pthread_mutex_init(data->mutex2, NULL)
-		|| pthread_mutex_init(data->m_last_time, NULL) || pthread_mutex_init(data->meals_mutex, NULL))
+	if (pthread_mutex_init(data->mutex1, NULL)
+		|| pthread_mutex_init(data->mutex2, NULL)
+		|| pthread_mutex_init(data->m_last_time, NULL)
+		|| pthread_mutex_init(data->meals_mutex, NULL))
 		return (1);
 	return (0);
 }
@@ -59,20 +62,20 @@ void	init_philo(t_data *data, t_philo *philo, t_mutex *mutexes)
 	int	i;
 
 	i = 0;
-	while(i < data->philos_num)
+	while (i < data->philos_num)
 	{
 		philo[i].philo_id = i + 1;
 		philo[i].meals = 0;
 		philo[i].last_time_ate = ft_get_time();
 		if (i % 2)
 		{
-			philo[i].left_fork = &mutexes[i].mutex;
-			philo[i].right_fork = &mutexes[(i + 1) % data->philos_num].mutex;
+			philo[i].first_fork = &mutexes[i].mutex; 
+			philo[i].second_fork = &mutexes[(i + 1) % data->philos_num].mutex;
 		}
 		else
 		{
-			philo[i].left_fork = &mutexes[(i + 1) % data->philos_num].mutex;
-			philo[i].right_fork = &mutexes[i].mutex;
+			philo[i].first_fork = &mutexes[(i + 1) % data->philos_num].mutex;
+			philo[i].second_fork = &mutexes[i].mutex;
 		}
 		philo[i].data = data;
 		i++;

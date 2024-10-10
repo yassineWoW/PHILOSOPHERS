@@ -6,13 +6,12 @@
 /*   By: yimizare <yimizare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 22:33:15 by yimizare          #+#    #+#             */
-/*   Updated: 2024/10/06 18:38:01 by yimizare         ###   ########.fr       */
+/*   Updated: 2024/10/09 18:15:35 by yimizare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
-
 
 # include <pthread.h>
 # include <time.h>
@@ -22,9 +21,7 @@
 # include <unistd.h>
 # include <stdbool.h>
 
-
-typedef	struct timeval	t_time;
-
+typedef struct timeval	t_time;
 
 typedef struct s_data
 {
@@ -45,14 +42,13 @@ typedef struct s_data
 	pthread_mutex_t	*meals_mutex;
 }	t_data;
 
-
 typedef struct s_philo
 {
 	int				philo_id;
 	size_t			last_time_ate;
 	size_t			meals;
-	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	*first_fork;
+	pthread_mutex_t	*second_fork;
 	t_data			*data;
 }	t_philo;
 
@@ -60,7 +56,6 @@ typedef struct s_mutex
 {
 	pthread_mutex_t	mutex;
 }	t_mutex;
-
 
 void	ft_putstr_fd(char *s, int fd);
 size_t	ft_get_time(void);

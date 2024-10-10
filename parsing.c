@@ -6,7 +6,7 @@
 /*   By: yimizare <yimizare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 20:23:01 by yimizare          #+#    #+#             */
-/*   Updated: 2024/10/05 16:35:35 by yimizare         ###   ########.fr       */
+/*   Updated: 2024/10/09 15:26:26 by yimizare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,14 @@ int	ft_atoi(char *in)
 
 int	parsing(int ac, char **argv)
 {
-	int i;
+	int	i;
 
 	i = 1;
-	(void)ac;
+	if (ac < 5 || ac > 6)
+	{
+		ft_putstr_fd("not enough or too much args\n", 2);
+		return (1);
+	}
 	while (argv[i] != NULL)
 	{
 		if (ft_atoi(argv[i]) == -1)

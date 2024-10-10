@@ -6,7 +6,7 @@
 /*   By: yimizare <yimizare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 22:48:39 by yimizare          #+#    #+#             */
-/*   Updated: 2024/10/05 19:16:11 by yimizare         ###   ########.fr       */
+/*   Updated: 2024/10/09 12:47:37 by yimizare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 size_t	ft_get_time(void)
 {
 	t_time	time;
-	
+
 	gettimeofday(&time, NULL);
-	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));	
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
 int	ft_usleep(long time)
@@ -30,10 +30,10 @@ int	ft_usleep(long time)
 	return (0);
 }
 
-int		ft_error(t_data *info)
+int	ft_error(t_data *info)
 {
 	if (info->philos_num < 1 || info->philos_num > 200
-		|| info->tt_die< 60 || info->tt_eat < 60
+		|| info->tt_die < 60 || info->tt_eat < 60
 		|| info->tt_sleep < 60 || info->meals_to_eat == 0)
 	{
 		ft_putstr_fd("makes no sense try again please ...\n", 1);

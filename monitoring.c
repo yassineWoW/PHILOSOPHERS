@@ -6,7 +6,7 @@
 /*   By: yimizare <yimizare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 18:07:47 by yimizare          #+#    #+#             */
-/*   Updated: 2024/10/06 18:36:57 by yimizare         ###   ########.fr       */
+/*   Updated: 2024/10/09 15:14:51 by yimizare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	check_philo_death(t_philo *philo, int i)
 	return (0);
 }
 
-int check_philos_ate(t_philo *philo)
+int	check_philos_ate(t_philo *philo)
 {
 	pthread_mutex_lock(philo->data->meals_mutex);
 	pthread_mutex_lock(philo->data->mutex1);

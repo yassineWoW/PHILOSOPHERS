@@ -1,4 +1,4 @@
-FLAGS = -Wall -Wextra -Werror -pthread -fsanitize=thread -g3
+FLAGS = -Wall -Wextra -Werror
 
 SRCS = main.c philo_utils.c parsing.c routine.c printing.c monitoring.c initialization.c
 
